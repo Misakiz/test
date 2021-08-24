@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+spec:
+  selector：
+    matchLables:
+      app: test
+  replicas: 1
+  template:
+    metadata:
+      lables:
+        app: test
+    spec: 
+      container:
+        - name: test
+          image: registry.cn-hangzhou.aliyuncs.com/zykj-test/test:v1
+          ports:
+          - name: http
+            containerPort: 8080     --容器端口
+            hostPort: 8081     --暴露端口
+            protocol: TCP
+
+-----
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tes
+  labels:
+    svc: test
+spec:
+  selector:
+    app: test
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+  type: ClusterIP
