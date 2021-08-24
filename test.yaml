@@ -4,7 +4,7 @@ metadata:
   name: test
 spec:
   selector：
-    matchLables:
+    matchLabels:
       app: test
   replicas: 1
   template:
