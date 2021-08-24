@@ -1,37 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test
+  name: web
 spec:
-  selector：
+  selector:
     matchLabels:
-      app: test
+      app: web
   replicas: 1
   template:
     metadata:
       labels:
-        app: test
-    spec: 
-      container:
-        - name: test
+        app: web
+    spec:
+      containers:
+        - name: web
           image: registry.cn-hangzhou.aliyuncs.com/zykj-test/test:v1
           ports:
           - name: http
             containerPort: 8080     --容器端口
             hostPort: 8081     --暴露端口
             protocol: TCP
-
------
-
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tes
+  name: web
   labels:
-    svc: test
+    svc: web
 spec:
   selector:
-    app: test
+    app: web
   ports:
     - name: http
       port: 8081
