@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: registry.cn-hangzhou.aliyuncs.com/zykj-test/test:v1
+          image: registry.cn-hangzhou.aliyuncs.com/zykj-test/test:v2
           ports:
           - name: http
             containerPort: 8080     
